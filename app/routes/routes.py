@@ -1,5 +1,5 @@
 from flask import Flask, request
-from __main__ import app 
+from main import app 
 from app.models.model import get_image_class
 
 @app.route("/api/v1/classify", methods=["Post"])
