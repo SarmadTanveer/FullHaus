@@ -1,7 +1,6 @@
 from flask import Flask, request
 from main import app 
-from app.utils import image_utils
-import numpy as np
+from app.models.model import get_image_class
 
 @app.route("/api/v1/classify", methods=["Post"])
 def classify_image():
@@ -32,11 +31,11 @@ def classify_image():
         "message": "something went wrong"
     }, 500) 
 
-  image_array =  image_utils.filetoimage_array(request.files['image'], size=(150,150))
-  print(image_array.shape)
-  image_array = image_utils.rescale(image_array, scale=1./255)
-  print(image_array)
+  category = get_image_class(request.files['image'], labels=['Bed', 'Chair', 'Sofa'])
+
+  
+
   return({
-    "category": "Bed"
+    "category": category
   }, 200) 
 
