@@ -1,6 +1,7 @@
 from flask import Flask, request
 from main import app 
-from werkzeug.utils import secure_filename
+from app.utils import image_utils
+import numpy as np
 
 @app.route("/api/v1/classify", methods=["Post"])
 def classify_image():
@@ -31,8 +32,10 @@ def classify_image():
         "message": "something went wrong"
     }, 500) 
 
-  
-  
+  image_array =  image_utils.filetoimage_array(request.files['image'], size=(150,150))
+  print(image_array.shape)
+  image_array = image_utils.rescale(image_array, scale=1./255)
+  print(image_array)
   return({
     "category": "Bed"
   }, 200) 
