@@ -5,16 +5,22 @@ from app.models.model import get_image_class
 @app.route("/api/v1/classify", methods=["Post"])
 def classify_image():
   try:
-    print(request.files['image'])
 
     if '' in request.files: 
       return({
-      "message": "Error please provide an image or check file key"
+      "message": "Please provide an image or check file key"
       },400)
   
     if "image" not in request.files:
       return ({
       "message": "Please ensure file key is 'image'"
+      },400)
+
+    print(request.files['image'])
+
+    if '' in request.files['image'].filename: 
+      return({
+        "message": "Missing image file"
       },400)
 
     ext = request.files['image'].filename.split('.')[-1]
@@ -23,15 +29,16 @@ def classify_image():
         "message": "File extension not allowed"
       },400)
 
+    category = get_image_class(request.files['image'], labels=['Bed', 'Chair', 'Sofa'])
+
   except Exception as e: 
     #the catch all
-
     print(e)
     return({
         "message": "something went wrong"
     }, 500) 
 
-  category = get_image_class(request.files['image'], labels=['Bed', 'Chair', 'Sofa'])
+  
 
   
 
