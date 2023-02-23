@@ -16,9 +16,7 @@ def classify_image():
       "message": "Please ensure file key is 'image'"
       },400)
 
-    print(request.files['image'])
-
-    if request.files['image'].filename is '' or request.files['image'].filename is ' ': 
+    if request.files['image'].filename == '' or request.files['image'].filename == ' ': 
       return({
         "message": "Missing image file"
       },400)
