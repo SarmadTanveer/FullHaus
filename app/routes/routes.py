@@ -1,5 +1,5 @@
 from flask import Flask, request
-from main import app 
+from __main__ import app 
 from app.models.model import get_image_class
 
 @app.route("/api/v1/classify", methods=["Post"])
@@ -18,7 +18,7 @@ def classify_image():
 
     print(request.files['image'])
 
-    if '' in request.files['image'].filename: 
+    if request.files['image'].filename is '' or request.files['image'].filename is ' ': 
       return({
         "message": "Missing image file"
       },400)
