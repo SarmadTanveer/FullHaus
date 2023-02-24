@@ -34,6 +34,6 @@ Server response:
 The classifier is a custom CNN trained on the provided dataset. The architecture and training details can be found in the following notebook:  
 https://colab.research.google.com/drive/1poqxgY-ZREM5YLMGg9cSc2D6eaB5pYaq?usp=sharing
 
-Note: While the model exhibits high validation and training accuracy, this is most likely due to a small dataset. The variance in the validation set is very low. Future imporvements could include generating augmented pictures in the training set to increase variance and generalize the model.  
+Note: While the model exhibits high validation and training accuracy, this is most likely due to a small dataset. The variance in the validation set is very low. Future imporvements could include generating augmented pictures in the training set to increase variance and generalize the model. Increasing the dataset size could have a simillar effect. The model wasn't tested against a test set due to the low number of samples.    
 
 

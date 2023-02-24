@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 
-def get_model(model_name = "modelv1"):
+def get_model(model_name = "modelv2"):
   cwd = os.getcwd()
   models_dir = os.path.join(cwd,'app/models')
   model_location = os.path.join(models_dir, model_name)
@@ -13,7 +13,8 @@ def get_model(model_name = "modelv1"):
 
 def prepare_image(fileObject):
   image_array = image_utils.filetoimage_array(fileObject, size=(150,150))
-  image_array = image_utils.rescale(image_array)
+  #not required for model v2
+  #image_array = image_utils.rescale(image_array)
   image_array = image_utils.expand_array_dims(image_array)
   return image_array
 
