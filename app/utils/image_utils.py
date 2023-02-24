@@ -11,7 +11,7 @@ def filetoimage_array(uploaded_file, size=(150,150)):
   return image_array  
 
 def rescale(image_array, scale = 1./255):
-  image_array /= 255.0
+  image_array *= scale
   return image_array
 
 def expand_array_dims(image_array): 
